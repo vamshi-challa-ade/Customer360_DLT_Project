@@ -36,16 +36,22 @@ DLT Pipeline Result:
 ## ▶️ How to Run
 1. Upload datasets to your ADLS container.
 2. Import notebooks into Databricks workspace.
-3. Deploy `dlt_pipeline.json` in Databricks DLT UI.
+3. Deploy `dlt_pipeline.yaml` in Databricks DLT UI.
 4. Start the pipeline and explore results.
 
 ## 📊 Example KPI
-```sql
+```python
 -- Average resolution time per customer
-SELECT 
-    c.customer_id,
-    c.customer_name,
-    ROUND(AVG(t.resolution_time), 2) AS avg_res_time
-FROM customers c
-LEFT JOIN tickets t ON c.customer_id = t.customer_id
-GROUP BY c.customer_id, c.customer_name;
+@dlt.table
+def avg_res_time():
+    df_cust = spark.read.table('LIVE.sil_customers')
+    df_tickets = spark.read.table('LIVE.sil_tickets')
+    df_res = df_tickets.join(
+        df_cust,
+        df_cust.customer_id == df_tickets.customer_id,
+        'left'
+    )
+    df_res = df_res.groupBy(df_cust['customer_id'],df_cust['name']).agg(
+        round(avg('resolution_time'), 2).alias('avg_res_time'))\
+    .select(df_cust['customer_id'],df_cust['name'], 'avg_res_time')
+    return df_res
