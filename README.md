@@ -14,7 +14,13 @@ The pipeline ingests **Customer Profiles, Orders, and Support Tickets**, applies
 3. **Aggregation & KPIs**: Gold tables compute business metrics for reporting.
 4. **Visualization**: Results can be consumed via Databricks SQL dashboards or Power BI.
 
+Architecture Diagram:
+<img width="1536" height="1024" alt="ChatGPT Image Aug 24, 2025, 07_13_36 PM" src="https://github.com/user-attachments/assets/62c63dde-cee2-4be0-812d-95edd18e5f26" />
+
+DLT Pipeline Result:
 <img width="959" height="502" alt="image" src="https://github.com/user-attachments/assets/5c5c3233-a1cb-4d6c-9148-e00ef473dae6" />
+
+
 
 ## 🚀 Tech Stack
 - **Azure Databricks** (Delta Live Tables, PySpark, Delta Lake)
