@@ -1,5 +1,3 @@
-# Customer360_DLT_Project
-
 # Customer 360 Analytics using Delta Live Tables (DLT) on Databricks
 
 ## 📌 Project Overview
