@@ -1,0 +1,12 @@
+resources:
+  pipelines:
+    pipeline_dlt_prj_pipeline:
+      name: dlt_prj_pipeline
+      libraries:
+        - notebook:
+            path: /DLT_Tutorial/2_dlt
+      schema: schema3
+      development: true
+      photon: true
+      catalog: dlt_catalog
+      serverless: true
